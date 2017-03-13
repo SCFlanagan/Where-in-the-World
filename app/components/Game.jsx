@@ -13,6 +13,7 @@ export default class Game extends React.Component {
         this.state = {
             destLat: props.currentLocations[0].lat,
             destLng: props.currentLocations[0].lng,
+            distance: 0,
             markers: []
         }
     }
@@ -53,6 +54,7 @@ export default class Game extends React.Component {
             let lat = event.latLng.lat();
             let lng = event.latLng.lng();
             let distance = this.getDistanceBetween(lat, lng, this.state.destLat, this.state.destLng);
+            this.state.distance = distance;
             this.props.changeDistance(distance);
             this.props.changeLatLngGuess([lat, lng]);
         });
@@ -87,13 +89,17 @@ export default class Game extends React.Component {
       return marker;
     }
 
+    addDistance() {
+      this.props.addToTotal(this.state.distance);
+    }
+
    render() {
         return (
             <div >
                 <div id="street-view"></div>
                 <div id="map"></div>
                 <Link to={'/results'}>
-                  <button id="guess"> Make Guess </button>
+                  <button id="make-guess" onClick={this.addDistance.bind(this)}> Make Guess </button>
                 </Link>
             </div>
         );  

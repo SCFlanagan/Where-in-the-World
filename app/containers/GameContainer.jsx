@@ -1,10 +1,9 @@
 import { connect } from 'react-redux';
 import Game from '../components/Game';
-import { changeLatLngGuess, changeDistance } from '../reducers/index';
+import { changeLatLngGuess, changeDistance, addToTotal } from '../reducers/index';
 
 export default connect(
   (state) => {
-
     return {
       currentLocations: state.currentLocations
     }
@@ -16,6 +15,9 @@ export default connect(
           },
           changeDistance: function(distance) {
               dispatch(changeDistance(distance));
+          },
+          addToTotal: function(added) {
+            dispatch(addToTotal(added));
           }
       }
   }

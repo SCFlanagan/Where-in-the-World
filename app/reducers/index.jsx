@@ -20,7 +20,8 @@ const initialState = {
   selectedCategory: '',
   currentLocations: [],
   latLngGuess: [],
-  distance: 0
+  distance: 0,
+  totalDistance: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -46,6 +47,14 @@ const reducer = (state = initialState, action) => {
 
     case "CHANGE_DISTANCE":
       newState.distance = action.distance;
+      break;
+
+    case "ADD_TO_TOTAL":
+      newState.totalDistance += +action.added;
+      break;
+
+    case "CHANGE_TOTAL":
+      newState.totalDistance = action.total;
       break;
 
     default: return state;
@@ -90,6 +99,21 @@ export const changeDistance = (distance) => {
     distance
   }
 }
+
+export const changeTotal = (total) => {
+  return {
+    type: "CHANGE_TOTAL",
+    total
+  }
+}
+
+export const addToTotal = (added) => {
+  return {
+    type: "ADD_TO_TOTAL",
+    added
+  }
+}
+
 
 
 export default reducer

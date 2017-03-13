@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { placeMarker } from '../main';
 import { Link } from 'react-router';
+import store from '../store';
 
 
 export default class Results extends React.Component {
@@ -21,7 +22,6 @@ export default class Results extends React.Component {
 
     componentDidMount() {
         let map = this.initMap();
-        
     }
 
     initMap() {
@@ -59,22 +59,47 @@ export default class Results extends React.Component {
         map.fitBounds(bounds);
     }
 
+    resetStore() {
+        let currLocations = this.props.currentLocations;
+        let newCurrLocations = currLocations.slice(1);
+        this.props.changeDistance(0);
+        this.props.changeLatLngGuess([]);
+        this.props.changeCurrentLocations(newCurrLocations);
+    }
+
     render() {
+        let title = 'Results';
+        let button = 
+                <div className="results-buttons">
+                    <Link to={'/home'}>
+                        <button className="each-button">Quit this Game</button>
+                    </Link>
+                    <Link to={'/game'}>
+                        <button className="each-button" onClick={this.resetStore.bind(this)}>Next Round</button>
+                    </Link>
+                </div>;
+        if (this.props.currentLocations.length === 1) {
+            title = 'Game Over';
+            button =
+                    <div>
+                        <p> The total distance you accrued is {this.props.totalDistance} miles.</p>
+                        <Link to={'/home'}>
+                            <button className="lone-button">Return Home</button>
+                        </Link>
+                    </div>;
+        }
+
         return (
             <div className="result-and-key">
-                <h1>Results</h1>
+                <h1>{title}</h1>
                 <div id="resultMap"></div>
                 <div>
                     <h4 id='result-key-left'><span style={{color: '#50eb02'}}>Green</span> indicates the correct location.</h4> 
                     <h4 id='result-key-right'><span style={{color: '#fc2a00'}}>Red</span> indicates the location of your guess.</h4>
                 </div>
                 <p>Your guess was {this.state.distance} miles away from the correct location.</p>
-                <Link to={'/home'}>
-                    <button>Quit this Game</button>
-                </Link>
-                <Link to={'/game'}>
-                    <button>Next Round</button>
-                </Link>
+                
+                {button}
             </div>
         )
     }
