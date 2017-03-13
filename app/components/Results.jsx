@@ -78,11 +78,12 @@ export default class Results extends React.Component {
                         <button className="each-button" onClick={this.resetStore.bind(this)}>Next Round</button>
                     </Link>
                 </div>;
+        let totalDistance = this.props.totalDistance.toFixed(1);
         if (this.props.currentLocations.length === 1) {
             title = 'Game Over';
             button =
                     <div>
-                        <p> The total distance you accrued is {this.props.totalDistance} miles.</p>
+                        <p> The total distance you accrued is {totalDistance} miles.</p>
                         <Link to={'/home'}>
                             <button className="lone-button">Return Home</button>
                         </Link>
@@ -97,7 +98,7 @@ export default class Results extends React.Component {
                     <h4 id='result-key-left'><span style={{color: '#50eb02'}}>Green</span> indicates the correct location.</h4> 
                     <h4 id='result-key-right'><span style={{color: '#fc2a00'}}>Red</span> indicates the location of your guess.</h4>
                 </div>
-                <p>Your guess was {this.state.distance} miles away from the correct location.</p>
+                <p>The place you were looking for is {this.props.currentLocations[0].name}. Your guess was {this.state.distance} miles away from the correct location.</p>
                 
                 {button}
             </div>
