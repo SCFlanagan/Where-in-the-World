@@ -27,11 +27,10 @@ const hardcodedLocations = [
   {name: 'Redwood National Park in California', lat: 41.376549, lng: -124.002877, category: 'natural'},
   {name: 'Lake Titicaca in Chile', lat: -15.425433, lng: -69.477246, category: 'natural'},
   {name: 'Mt. Everest in Nepal', lat: 28.002442, lng: 86.852606, category: 'natural'},
-  {name: 'Great Barrier Reef in Australia', lat: -23.306160, lng: 151.916823, category: 'natural'},
 
   {id: 31, name: 'the Statue of Liberty in New York City', lat: 40.689860, lng: -74.043477, category: 'usa'},
   {id: 32, name: 'the Hollwood Sign in Los Angeles, California', lat: 34.131088, lng: -118.320441, category: 'usa'},
-  {id: 33, name: 'Alcatraz Island in San Francisco, California', lat: 37.826264, lng: -122.422104, category: 'usa'},
+  //{id: 33, name: 'Alcatraz Island in San Francisco, California', lat: 37.826264, lng: -122.422104, category: 'usa'},
   {id: 34, name: 'the Lincoln Memorial in Washington, D.C', lat: 38.889298, lng: -77.049019, category: 'usa'},
   {id: 35, name: 'the Las Vegas Strip in Nevada', lat: 36.112033, lng: -115.173029, category: 'usa'},
   {id: 36, name: 'Mt. Rushmore in South Dakota', lat: 43.876985, lng: -103.455860, category: 'usa'},
@@ -49,7 +48,7 @@ const hardcodedLocations = [
 
 const initialState = {
   locations: hardcodedLocations,
-  selectedCategory: null,
+  selectedCategory: 'random',
   currentLocations: [],
   latLngGuess: [],
   distance: 0,

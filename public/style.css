@@ -5,7 +5,7 @@ body {
 
 #street-view {
     height: 500px;
-    width: 800px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -15,6 +15,7 @@ body {
 }
 
 #map {
+
     height: 200px;
     width: 350px;
     margin: 10px auto;
@@ -56,10 +57,6 @@ body {
 
 .text {
     text-align: center;
-}
-
-.button {
-    
 }
 
 #play-game {

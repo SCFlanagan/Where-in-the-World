@@ -10,10 +10,11 @@ export default class HomePage extends React.Component {
     constructor() {
       super();
       this.state = {
-        category: null,
+        category: 'random',
         handleSelection: this.handleSelection.bind(this),
         chooseFiveRandomly: this.chooseFiveRandomly.bind(this),
-        chooseLocations: this.chooseLocations.bind(this)
+        chooseLocations: this.chooseLocations.bind(this),
+        findLocations: this.findLocations.bind(this)
       }
     }
 
@@ -24,12 +25,11 @@ export default class HomePage extends React.Component {
       this.state.category = newCategory;
       let newElem = document.getElementById(newCategory);
       newElem.style.border = 'solid 5px lightblue';
-      if (oldCategory !== null && newCategory !== oldCategory) {
+      if (oldCategory !== 'random' && newCategory !== oldCategory) {
         let oldElem = document.getElementById(oldCategory);
         oldElem.style.border = 'solid 5px black';
       }
       store.dispatch(changeSelectedCategory(newCategory));
-      this.state.chooseLocations();
     }
 
     chooseFiveRandomly(arr) {
@@ -39,21 +39,19 @@ export default class HomePage extends React.Component {
         chosen.push(arr[index]);
         arr.splice(index, 1);
       }
-      return chosen
+      return chosen;
     }
 
     chooseLocations() {
       let state = store.getState();
       let categoryLocations = [];
       for (var i = 0; i < state.locations.length; i++) {
-        if (state.selectedCategory === null) {
-          console.log('in')
+        if (state.selectedCategory === 'random') {
           categoryLocations.push(state.locations[i]);
         } else if (state.locations[i].category === state.selectedCategory) {
           categoryLocations.push(state.locations[i]);
         } 
       }
-      console.log('catLoc: ', categoryLocations)
       let selectedLocations = this.state.chooseFiveRandomly(categoryLocations)
       store.dispatch(changeCurrentLocations(selectedLocations));
     }
@@ -62,8 +60,12 @@ export default class HomePage extends React.Component {
       store.dispatch(changeCurrentLocations([]));
       store.dispatch(changeDistance(0));
       store.dispatch(changeTotal(0));
-      store.dispatch(changeSelectedCategory(null));
+      store.dispatch(changeSelectedCategory('random'));
       store.dispatch(changeLatLngGuess([]));
+    }
+    
+    findLocations() {
+      this.chooseLocations();
     }
 
     render() {
@@ -89,7 +91,7 @@ export default class HomePage extends React.Component {
                 </div>
               </div>
               <Link to={'/game'}>
-                <button className="button" id="play-game">Play Game</button>
+                <button onClick={this.state.findLocations} className="button" id="play-game">Play Game</button>
               </Link>
           </div>
       )
