@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {Button} from 'react-bootstrap';
 import ResultsContainer from '../containers/ResultsContainer';
+import store from '../store';
+import { Link } from 'react-router';
+
 
 
 export default class Game extends React.Component {
@@ -9,11 +11,8 @@ export default class Game extends React.Component {
         super(props);
 
         this.state = {
-            destLat: 55.752087,
-            destLng: 37.617494,
-            guessLat: '',
-            guessLng: '',
-            distance: '',
+            destLat: props.currentLocations[0].lat,
+            destLng: props.currentLocations[0].lng,
             markers: []
         }
     }
@@ -50,52 +49,52 @@ export default class Game extends React.Component {
             }
 
             let newMarker = this.placeMarker(map, event.latLng);
-            
             this.state.markers.push(newMarker);
-            this.state.guessLat = event.latLng.lat();
-            this.state.guessLng = event.latLng.lng();
-            let distance = this.getDistanceBetween(this.state.guessLat, this.state.guessLng, this.state.destLat, this.state.destLng);
-            this.state.distance = +distance;
-            return distance;
+            let lat = event.latLng.lat();
+            let lng = event.latLng.lng();
+            let distance = this.getDistanceBetween(lat, lng, this.state.destLat, this.state.destLng);
+            this.props.changeDistance(distance);
+            this.props.changeLatLngGuess([lat, lng]);
         });
-    }
-
-    placeMarker(map, location) {
-        var marker = new google.maps.Marker({
-
-            position: location, 
-            map: map
-        });
-        map.setCenter(location);
-        return marker;
     }
 
     getDistanceBetween(lat1,lon1,lat2,lon2) {
-    var R = 3956; // Radius of the earth in miles
-    var dLat = this.deg2rad(lat2-lat1);
-    var dLon = this.deg2rad(lon2-lon1);
-    var a = 
-        Math.sin(dLat/2) * Math.sin(dLat/2) +
-        Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
-        Math.sin(dLon/2) * Math.sin(dLon/2)
-        ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
-    console.log(c);
-    var d = R * c;
-    return d.toFixed(1);
+      var R = 3956; // Radius of the earth in miles
+      var dLat = this.deg2rad(lat2-lat1);
+      var dLon = this.deg2rad(lon2-lon1);
+      var a = 
+          Math.sin(dLat/2) * Math.sin(dLat/2) +
+          Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+          Math.sin(dLon/2) * Math.sin(dLon/2)
+          ; 
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      var d = R * c;
+      return d.toFixed(1);
     }
 
     deg2rad(deg) {
-    return deg * (Math.PI/180)
+      return deg * (Math.PI/180)
+    }
+
+    placeMarker(map, location) {
+      var marker = new google.maps.Marker({
+
+          position: location, 
+          map: map
+      });
+
+      map.setCenter(location);
+      return marker;
     }
 
    render() {
         return (
-            <div onLoad={this.initialize}>
+            <div >
                 <div id="street-view"></div>
                 <div id="map"></div>
-                <Button id="guess" bsSize="large" bsStyle="primary">Make Guess</Button>
-                <ResultsContainer stateObj={this.state}/>
+                <Link to={'/results'}>
+                  <button id="guess"> Make Guess </button>
+                </Link>
             </div>
         );  
    }

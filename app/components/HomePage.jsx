@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {Jumbotron, Button, Link} from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
+import { Link } from 'react-router';
 import {changeSelectedCategory} from '../reducers/index';
 import store from '../store';
 
@@ -15,6 +16,7 @@ export default class HomePage extends React.Component {
     }
 
     handleSelection(e) {
+      e.preventDefault();
       let oldCategory = this.state.category;
       let newCategory = e.target.attributes.value.value;
       this.state.category = newCategory;
@@ -32,7 +34,7 @@ export default class HomePage extends React.Component {
           <div>
               <Jumbotron className="text">
                   <h1>How Well Do You Know the World?</h1>
-                  <p>Get dropped onto the street somewhere in the world and indicate on the map where you think you are.</p>
+                  <p>Pick a category then get dropped onto the street somewhere in the world and indicate on the map where you think you are.</p>
               </Jumbotron>
               <div className="category-boxes">
                 <div className="category-selection" id="international" onClick={this.state.handleSelection} value="international">
@@ -49,7 +51,9 @@ export default class HomePage extends React.Component {
                   <p className="category-text">Natural Wonders</p>
                 </div>
               </div>
-              <button id="play-game">Play Game</button>
+              <Link to={'/game'}>
+                <button id="play-game">Play Game</button>
+              </Link>
           </div>
       )
     }

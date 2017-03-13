@@ -6,6 +6,7 @@
 
 const User = require('./user')
 const OAuth = require('./oauth')
+//const Location = require('./locations')
 
 OAuth.belongsTo(User)
 User.hasOne(OAuth)

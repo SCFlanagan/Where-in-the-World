@@ -83,3 +83,13 @@ body {
 #natural {
     background-image: url('http://www.maverickairlines.com/images/plane-gc-opt.jpg');
 }
+
+.result-and-key {
+    text-align: center;
+}
+
+#resultMap {
+    height: 400px;
+    width: 70%;
+    margin-left: 15%;
+}

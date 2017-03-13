@@ -1,80 +1,81 @@
 import React from 'react';
-import { FormGroup, ControlLabel, FormControl, Button, Modal, Radio } from 'react-bootstrap'
+import { Button, Modal } from 'react-bootstrap';
+import { placeMarker } from '../main';
+import { Link } from 'react-router';
 
 
-const Results = React.createClass({
+export default class Results extends React.Component {
+    constructor(props) {
+        super(props);
 
-    getInitialState(){
-        console.log('Results component props: ', this.props)
-        return { 
-            showModal: false
-        };
-    },
+        const locArr = props.currentLocations;
+        const destLat = locArr[0].lat;
+        const destLng = locArr[0].lng;
 
-    close(){
-        this.setState({ showModal: false });
-    },
-
-    open(){
-        this.setState({ showModal: true });
-    },
-
-
-    submitAndClose(description, rating, userId, productId) {
-
-        const newReview = this.props.handleSubmit(description, rating, userId, productId);
-        this.close();
-    },
-
-    render() {
-        if (this.props.user) {
-            return (
-                <div> 
-                    <Button bsStyle="primary" bsSize="small" onClick={this.open} >
-                    Review This Product
-                    </Button>
-
-                    <Modal show={this.state.showModal} onHide={this.close}>
-
-                        <Modal.Header id="review-form-header">
-                            <Modal.Title>Leave a Review for {this.props.selectedProduct.name}</Modal.Title>
-                        </Modal.Header>
-
-                        <Modal.Body>
-                            <h4>Rate: </h4>
-                            <div className="rating-stars">
-                                <Button id="1" value="1" onClick={this.chooseRating}>☆</Button>
-                                <Button id="2" value="2" onClick={this.chooseRating}>☆</Button>
-                                <Button id="3" value="3" onClick={this.chooseRating}>☆</Button>
-                                <Button id="4" value="4" onClick={this.chooseRating}>☆</Button>
-                                <Button id="5" value="5" onClick={this.chooseRating}>☆</Button>
-                            </div>
-                                
-                            <form onSubmit={(e) => {
-                                    e.preventDefault();
-                                    this.submitAndClose(e.target.inputField.value, this.state.rating, this.props.user.id, this.props.selectedProduct.id)}
-                                    }>
-                                <FormGroup>
-                                    <ControlLabel>Review: </ControlLabel>
-                                    <FormControl name="inputField" id="review-text" type="text"/>
-                                </FormGroup>
-
-                                <Button onClick={this.close}>Close</Button>
-                                <Button bsStyle="primary" type="submit">Submit Review</Button>
-                            </form>
-
-                        </Modal.Body>
-
-                    </Modal>
-                </div>
-            )
-        } else {
-            return (<div></div>)
+        this.state = {
+            destLatLng: [destLat, destLng],
+            guessLatLng: props.latLngGuess,
+            distance: props.distance
         }
     }
-})
 
-export default Results
+    componentDidMount() {
+        let map = this.initMap();
+        
+    }
 
+    initMap() {
+        let map = new google.maps.Map(document.getElementById('resultMap'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 2,
+            minZoom: 2
+        })
 
+        let markers = [];
 
+        var guessImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/fc2a00/");
+        var destImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/50eb02/");
+
+        let markerDest = new google.maps.Marker({
+          position: {lat: this.state.destLatLng[0], lng: this.state.destLatLng[1]},
+          map: map,
+          title: 'Actual Location',
+          icon: destImage
+        });
+
+        let markerGuess = new google.maps.Marker({
+          position: {lat: this.state.guessLatLng[0], lng: this.state.guessLatLng[1]},
+          map: map,
+          title: 'Your guess',
+          icon: guessImage
+        });
+
+        markers.push(markerDest, markerGuess)
+
+        let bounds = new google.maps.LatLngBounds();
+        for (var i = 0; i < markers.length; i++) {
+            bounds.extend(markers[i].getPosition());
+        }
+        map.fitBounds(bounds);
+    }
+
+    render() {
+        return (
+            <div className="result-and-key">
+                <h1>Results</h1>
+                <div id="resultMap"></div>
+                <div>
+                    <h4 id='result-key-left'><span style={{color: '#50eb02'}}>Green</span> indicates the correct location.</h4> 
+                    <h4 id='result-key-right'><span style={{color: '#fc2a00'}}>Red</span> indicates the location of your guess.</h4>
+                </div>
+                <p>Your guess was {this.state.distance} miles away from the correct location.</p>
+                <Link to={'/home'}>
+                    <button>Quit this Game</button>
+                </Link>
+                <Link to={'/game'}>
+                    <button>Next Round</button>
+                </Link>
+            </div>
+        )
+    }
+}

@@ -5,8 +5,10 @@ import Results from '../components/Results';
 
 export default connect(
   (state) => {
-      console.log('resultsContainer state: ', state)
+      
     return {
-
+      currentLocations: state.currentLocations,
+      latLngGuess: state.latLngGuess,
+      distance: state.distance
     }
 })(Results)
