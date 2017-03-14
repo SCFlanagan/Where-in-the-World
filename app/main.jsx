@@ -3,22 +3,19 @@ import React from 'react';
 import {Router, Route, IndexRedirect, browserHistory} from 'react-router';
 import {render} from 'react-dom';
 import {connect, Provider} from 'react-redux';
-import axios from 'axios';
 
 import store from './store';
-import HomePage from './components/HomePage';
+import AppContainer from './components/AppContainer';
 import GameContainer from './containers/GameContainer';
 import ResultsContainer from './containers/ResultsContainer';
-import {receiveLocations} from './reducers/index';
+import {receiveLocations, changeCurrentLocations, changeDistance, changeTotal, changeSelectedCategory, changeLatLngGuess} from './reducers/index';
 
-const loadAllLocations = (nextState, replace, done) => {
-  axios.get('/api/locations')
-    .then(locations => {
-      console.log('getting locations: ', locations.data)
-      return store.dispatch(receiveLocations(locations.data))
-    })
-    .then(() => done())
-    .catch(console.error)
+const resetStore = function() {
+  store.dispatch(changeCurrentLocations([]));
+  store.dispatch(changeDistance(0));
+  store.dispatch(changeTotal(0));
+  store.dispatch(changeSelectedCategory('random'));
+  store.dispatch(changeLatLngGuess([]));
 }
 
 render (
@@ -26,7 +23,7 @@ render (
     <Router history={browserHistory}>
       <Route path="/">
         <IndexRedirect to="/home" />
-        <Route path="/home" component={HomePage} onEnter={loadAllLocations}/>
+        <Route path="/home" component={AppContainer} onEnter={resetStore}/>
         <Route path="/game" component={GameContainer} />
         <Route path="/results" component={ResultsContainer}/>
       </Route>
