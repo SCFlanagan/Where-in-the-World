@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { Jumbotron } from 'react-bootstrap';
+import { Jumbotron, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { changeCurrentLocations, changeDistance, changeTotal, changeSelectedCategory, changeLatLngGuess } from '../reducers/index';
 import store from '../store';
+import SignUp from './SignUp';
 
 
 
-export default class HomePage extends React.Component {
+export default class HomePage extends Component {
     constructor() {
       super();
       this.state = {
@@ -71,9 +72,10 @@ export default class HomePage extends React.Component {
     render() {
       return (
           <div onLoad={this.resetStore()}>
-              <Jumbotron className="text">
-                  <h1>How Well Do You Know the World?</h1>
-                  <p>Pick a category and then get dropped onto the street somewhere in the world. Indicate on a map where you think you are and see how close you can get!</p>
+              <Jumbotron className="text jumbo">
+                  <h1>Where in the World</h1>
+                  <p>How well do you know the world?</p>
+                  <Button bsSize="small" bsStyle="primary">Instructions</Button>
               </Jumbotron>
               <div className="category-boxes">
                 <div className="category-selection" id="international" onClick={this.state.handleSelection} value="international">
@@ -93,6 +95,7 @@ export default class HomePage extends React.Component {
               <Link to={'/game'}>
                 <button onClick={this.state.findLocations} className="button" id="play-game">Play Game</button>
               </Link>
+              <SignUp />
           </div>
       )
     }

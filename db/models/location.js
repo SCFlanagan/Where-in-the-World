@@ -2,12 +2,11 @@
 
 const Sequelize = require('sequelize')
 const db = require('APP/db')
-const {Review, User} = require('./index')
 
 const Location = db.define('locations', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   lat: {
     type: Sequelize.STRING,
@@ -30,7 +29,7 @@ const Location = db.define('locations', {
   category: {
     type: Sequelize.STRING,
     allowNull: false
-  },
+  }
 })
 
 

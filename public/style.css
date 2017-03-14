@@ -1,6 +1,6 @@
 body {
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 #street-view {
@@ -31,15 +31,16 @@ body {
 
 .category-selection {
     height: 200px;
-    width: 30%;
-    margin: 5px 1%;
+    width: 50%;
+    /*margin: 5px 1%;*/
     display: inline-block;
     border-radius: 5px;
     background-size: cover;
     background-position: center;
     text-align: center;
     position: relative;
-    border: solid 5px black;
+    border: solid 5px white;
+    color: white;
 }
 
 .category-text {
@@ -50,7 +51,8 @@ body {
 }
 
 .category-boxes {
-    margin-left: 24.5%;
+    width: 100%;
+    /*margin-left: 24.5%;*/
 }
 
 .text {

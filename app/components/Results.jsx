@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 import { placeMarker } from '../main';
 import { Link } from 'react-router';
-import store from '../store';
 
 
-export default class Results extends React.Component {
+export default class Results extends Component {
     constructor(props) {
         super(props);
 

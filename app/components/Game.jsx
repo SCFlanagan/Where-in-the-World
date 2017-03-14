@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 
 
-export default class Game extends React.Component {
+export default class Game extends Component {
 
     constructor(props) {
         super(props);

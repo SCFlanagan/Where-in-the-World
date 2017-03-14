@@ -113,6 +113,7 @@ Afterwards,
     - Add a title page with buttons for log in or play as guest. 
     - After choosing to play as guest or logging in, have a page with better instructions and the categories. Or possibly a modal to read the instructions. Indicate that you can play as random by not choosing a category.
     - Make it so you can unselect a category to return it back to random.
-    - Incorporate a database to store the users and locations.
     - Make a home page container to connect to the store.
     - Change the 'Make Guess' button to send an alert if you try to push it without making a guess.
+    - Add logo/link back to home page on every page (in navbar?)
+    - unify css for a button class
