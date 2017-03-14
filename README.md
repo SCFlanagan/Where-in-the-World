@@ -102,3 +102,17 @@ have a linter someday soon.
 Afterwards,
   - *To deploy:* `npm run deploy-heroku`
   - *To re-seed:* `heroku run npm run seed`
+
+
+
+
+  Things To Improve:
+
+    - Add an option to log in or play as a guest. If you login, it will save your high score. There will also be a scoreboard that will feature the highest scores from all users.
+    - Improve the styling
+    - Add a title page with buttons for log in or play as guest. 
+    - After choosing to play as guest or logging in, have a page with better instructions and the categories. Or possibly a modal to read the instructions. Indicate that you can play as random by not choosing a category.
+    - Make it so you can unselect a category to return it back to random.
+    - Incorporate a database to store the users and locations.
+    - Make a home page container to connect to the store.
+    - Change the 'Make Guess' button to send an alert if you try to push it without making a guess.

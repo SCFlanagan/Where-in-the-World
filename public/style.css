@@ -43,11 +43,10 @@ body {
 }
 
 .category-text {
-    position: absolute;
-    bottom: 0;
-    margin-left: 20%;
+    text-shadow: 1px 1px gray;
     font-weight: bold;
     font-size: 18px;
+    text-align: center;
 }
 
 .category-boxes {
@@ -56,6 +55,7 @@ body {
 
 .text {
     text-align: center;
+    text-shadow: 1px 1px gray;
 }
 
 #play-game {
@@ -70,6 +70,7 @@ body {
     background-color: lightblue;
     color: white;
     border: solid 1px white;
+    text-shadow: 1px 1px gray;
 }
 
 #make-guess {
@@ -83,6 +84,7 @@ body {
     background-color: lightblue;
     color: white;
     border: solid 1px white;
+    text-shadow: 1px 1px gray;
 }
 
 .each-button {
@@ -96,10 +98,11 @@ body {
     color: white;
     border: solid 1px white;
     margin-right: 1%;
+    text-shadow: 1px 1px gray;
 }
 
 .results-buttons {
-    margin-left: 30%,
+    text-shadow: 1px 1px gray;
 }
 
 .lone-button {
@@ -113,6 +116,7 @@ body {
     color: white;
     border: solid 1px white;
     margin-left: 0;
+    text-shadow: 1px 1px gray;
 }
 
 
@@ -134,6 +138,7 @@ body {
 
 .result-and-key {
     text-align: center;
+    text-shadow: 1px 1px gray;
 }
 
 #resultMap {
