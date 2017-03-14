@@ -5,14 +5,9 @@ const api = module.exports = require('express').Router()
 
 api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
-
-  // .get('/locations', (req, res, next) => {
-  //   Location.findAll()
-  //     .then(locations => {
-  //       res.send(locations);
-  //     })
-  //     .catch(console.error)
-  // })
+  
+  .use('/locations', require('./locations'))
+  
   
 
 // No routes matched? 404.
