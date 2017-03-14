@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const initialState = {
   locations: [],
-  selectedCategory: 'random',
+  selectedCategory: 'Random',
   currentLocations: [],
   latLngGuess: [],
   distance: 0,

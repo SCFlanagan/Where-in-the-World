@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ResultsContainer from '../containers/ResultsContainer';
 import store from '../store';
 import { Link } from 'react-router';
+import { Button } from 'react-bootstrap';
 
 
 
@@ -9,7 +10,7 @@ export default class Game extends Component {
 
     constructor(props) {
         super(props);
-
+        console.log('props: ', props)
         this.state = {
             destLat: props.currentLocations[0].lat,
             destLng: props.currentLocations[0].lng,
@@ -99,7 +100,7 @@ export default class Game extends Component {
                 <div id="street-view"></div>
                 <div id="map"></div>
                 <Link to={'/results'}>
-                  <button id="make-guess" onClick={this.addDistance.bind(this)}> Make Guess </button>
+                  <Button bsSize="large" bsStyle="info" className="button" onClick={this.addDistance.bind(this)}> Make Guess </Button>
                 </Link>
             </div>
         );  

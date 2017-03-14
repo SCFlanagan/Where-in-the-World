@@ -1,107 +1,131 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
-import { changeCurrentLocations, changeDistance, changeTotal, changeSelectedCategory, changeLatLngGuess } from '../reducers/index';
-import store from '../store';
-import SignUp from './SignUp';
+// import { changeCurrentLocations, changeDistance, changeTotal, changeSelectedCategory, changeLatLngGuess } from '../reducers/index';
+// import store from '../store';
+// import SignUp from './SignUp';
+import Instructions from './Instructions';
 
 
 
 export default class HomePage extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        handleClick: this.handleClick.bind(this),
-        chooseFiveRandomly: this.chooseFiveRandomly.bind(this),
-        chooseLocations: this.chooseLocations.bind(this),
-        findLocations: this.findLocations.bind(this)
-      }
-    }
+  constructor(props) {
+    super(props);
 
-    handleClick(e) {
-      const oldCategory = this.props.selectedCategory;
-      let newCategory = e.target.attributes.value.value;
-      let newElem = document.getElementById(newCategory);
-      if (oldCategory === newCategory) {
-        newCategory = 'random';
-        newElem.style.border = 'solid 2px white';
-      } else {
-        if (oldCategory !== 'random') {
-          const oldElem = document.getElementById(oldCategory);
-          oldElem.style.border = 'solid 2px white';
-        }
-        newElem.style.border = 'solid 2px lightblue';
-      }
-      this.props.changeSelectedCategory(newCategory);
+    this.state = {
+      handleClick: this.handleClick.bind(this),
+      chooseFiveRandomly: this.chooseFiveRandomly.bind(this),
+      chooseLocations: this.chooseLocations.bind(this),
+      findLocations: this.findLocations.bind(this)
+    }
   }
 
-    chooseFiveRandomly(arr) {
-      let chosen = [];
-      for (var i = 5; i > 0; i--) {
-        let index = Math.floor(Math.random() * arr.length);
-        chosen.push(arr[index]);
-        arr.splice(index, 1);
-      }
-      return chosen;
+  switchToId(category) {
+    let text;
+    if (category === 'Historical Landmarks') {
+      text = 'Historical-Landmarks';
+    } else if (category === 'Natural Wonders') {
+      text = "Natural-Wonders";
+    } else if (category === 'United States') {
+      text = 'United-States';
+    } else if (category === 'International') {
+      text = 'International';
+    } else {
+      text = 'Random';
     }
+    return text;
+  }
 
-    chooseLocations() {
-      let categoryLocations = [];
-      for (var i = 0; i < state.locations.length; i++) {
-        if (state.selectedCategory === 'random') {
-          categoryLocations.push(state.locations[i]);
-        } else if (state.locations[i].category === state.selectedCategory) {
-          categoryLocations.push(state.locations[i]);
-        } 
+  handleClick(e) {
+    const oldCategory = this.props.selectedCategory;
+    let newCategory = e.target.attributes.value.value;
+    let newId = this.switchToId(newCategory);
+    let newElem = document.getElementById(newId);
+    if (oldCategory === newCategory) {
+      newCategory = 'Random';
+      newElem.style.border = 'solid 2px white';
+    } else {
+      if (oldCategory !== 'Random') {
+        const oldId = this.switchToId(oldCategory);
+        const oldElem = document.getElementById(oldId);
+        oldElem.style.border = 'solid 2px white';
       }
-      let selectedLocations = this.state.chooseFiveRandomly(categoryLocations)
-      store.dispatch(changeCurrentLocations(selectedLocations));
+      newElem.style.border = 'solid 2px black';
     }
-    
-    findLocations() {
-      this.chooseLocations();
-    }
+    this.props.changeSelectedCategory(newCategory);
+  }
 
-    render() {
-      let playButton = 'Play Random Categories';
-      if (this.props.selectedCategory !== 'random') {
-        let playbutton = `Play ${this.props.selectedCategory}`;
-      }
-      return (
-          <div >
-              <Jumbotron className="text jumbo">
-                  <h1>Where in the World</h1>
-                  <p>How well do you know the world?</p>
-                  <Button bsSize="small" bsStyle="info">Instructions</Button>
-              </Jumbotron>
-              <div className="category-boxes">
-                <div className="category-selection" id="international"  value="international" onClick={(e) => {
-                  e.preventDefault();
-                  this.state.handleClick(e)}}>
-                  <p className="category-text">International</p>
-                </div>
-                <div className="category-selection" id="usa"  value="usa" onClick={(e) => {
-                  e.preventDefault();
-                  this.state.handleClick(e)}}>
-                  <p className="category-text">United States</p>  
-                </div> 
-                <br></br>
-                <div className="category-selection" id="historical"  value="historical" onClick={(e) => {
-                  e.preventDefault();
-                  this.state.handleClick(e)}}>
-                  <p className="category-text">Historical Landmarks</p>
-                </div>
-                <div className="category-selection" id="natural"  value="natural" onClick={(e) => {
-                  e.preventDefault();
-                  this.state.handleClick(e)}}>
-                  <p className="category-text">Natural Wonders</p>
-                </div>
-              </div>
-              <Link to={'/game'}>
-                <Button bsStyle="info" bsSize="large" id="play-game">{this.props.selectedCategory}</Button>
-              </Link>
+  chooseFiveRandomly(arr) {
+    let chosen = [];
+    for (var i = 5; i > 0; i--) {
+      let index = Math.floor(Math.random() * arr.length);
+      chosen.push(arr[index]);
+      arr.splice(index, 1);
+    }
+    return chosen;
+  }
+
+  chooseLocations() {
+    let categoryLocations = [];
+    for (var i = 0; i < this.props.locations.length; i++) {
+      if (this.props.selectedCategory === 'Random') {
+        categoryLocations.push(this.props.locations[i]);
+      } else if (this.props.locations[i].category === this.props.selectedCategory) {
+        categoryLocations.push(this.props.locations[i]);
+      } 
+    }
+    let selectedLocations = this.state.chooseFiveRandomly(categoryLocations)
+    this.props.changeCurrentLocations(selectedLocations);
+  }
+
+  findLocations() {
+    this.state.chooseLocations();
+  }
+
+  render() {
+    return (
+      <div >
+        <Jumbotron className="text jumbo">
+          <h1>Where in the World</h1>
+          <p>How well do you know the world?</p>
+          <Instructions />
+        </Jumbotron>
+        <div className="category-boxes">
+          <div className="category-selection" id="International" value="International" onClick={(e) => {
+            e.preventDefault();
+            this.state.handleClick(e)
+          }}>
+            <div className="category-selection-child" value="International"></div>
+            <p className="category-text">International</p>
           </div>
-      )
-    }
+          <div className="category-selection" id="United-States" value="United States" onClick={(e) => {
+            e.preventDefault();
+            this.state.handleClick(e)
+          }}>
+            <div className="category-selection-child" value="United States"></div>
+            <p className="category-text">United States</p>
+          </div>
+          <br></br>
+          <div className="category-selection" id="Historical-Landmarks" value="Historical Landmarks" onClick={(e) => {
+            e.preventDefault();
+            this.state.handleClick(e)
+          }}>
+            <div className="category-selection-child" value="Historical Landmarks"></div>
+            <p className="category-text">Historical Landmarks</p>
+          </div>
+          <div className="category-selection" id="Natural-Wonders" value="Natural Wonders" onClick={(e) => {
+            e.preventDefault();
+            this.state.handleClick(e)
+          }}>
+            <div className="category-selection-child" value="Natural Wonders"></div>
+            <p className="category-text">Natural Wonders</p>
+          </div>
+        </div>
+        <Link to={'/game'}>
+          <Button bsStyle="info" bsSize="large" id="play-game" className="button" onClick={this.state.chooseLocations}>Play {this.props.selectedCategory}</Button>
+        </Link>
+      </div>
+    )
+  }
 }
 

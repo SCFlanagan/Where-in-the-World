@@ -6,6 +6,7 @@ import { changeSelectedCategory, changeCurrentLocations, changeDistance, changeT
 export default connect(
   (state) => {
     return {
+      locations: state.locations,
       currentLocations: state.currentLocations,
       selectedCategory: state.selectedCategory
     }
