@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { placeMarker } from '../main';
 import { Link } from 'react-router';
 
@@ -7,7 +7,6 @@ import { Link } from 'react-router';
 export default class Results extends Component {
     constructor(props) {
         super(props);
-
         const locArr = props.currentLocations;
         const destLat = locArr[0].lat;
         const destLng = locArr[0].lng;
@@ -67,38 +66,37 @@ export default class Results extends Component {
     }
 
     render() {
-        let title = 'Results';
         let button = 
-                <div className="results-buttons">
-                    <Link to={'/home'}>
-                        <button className="each-button">Quit this Game</button>
-                    </Link>
-                    <Link to={'/game'}>
-                        <button className="each-button" onClick={this.resetStore.bind(this)}>Next Round</button>
-                    </Link>
-                </div>;
-        let totalDistance = this.props.totalDistance.toFixed(1);
+            <div className="results-buttons">
+                <Link to={'/home'}>
+                    <Button bsStyle="info" bsSize="large" className="button">Quit this Game</Button>
+                </Link>
+                <Link to={'/game'}>
+                    <Button bsStyle="info" bsSize="large" className="button" onClick={this.resetStore.bind(this)}>Next Round</Button>
+                </Link>
+            </div>
+
         if (this.props.currentLocations.length === 1) {
-            title = 'Game Over';
             button =
-                    <div>
-                        <p> The total distance you accrued is {totalDistance} miles.</p>
-                        <Link to={'/home'}>
-                            <button className="lone-button">Return Home</button>
-                        </Link>
-                    </div>;
+                <div>
+                    <Link to={'/final'}>
+                        <Button bsSize="large" bsStyle="info" className="button">Get Your Results</Button>
+                    </Link>
+                </div>
         }
 
         return (
             <div className="result-and-key">
-                <h1>{title}</h1>
-                <div id="resultMap"></div>
-                <div>
-                    <h4 id='result-key-left'><span style={{color: '#50eb02'}}>Green</span> indicates the correct location.</h4> 
-                    <h4 id='result-key-right'><span style={{color: '#fc2a00'}}>Red</span> indicates the location of your guess.</h4>
+                <div id="#result-writing-header">
+                    <h1>{this.props.currentLocations[0].name}</h1>
+                    <h5>{this.props.currentLocations[0].location}</h5>
                 </div>
-                <p>The place you were looking for is {this.props.currentLocations[0].name}. Your guess was {this.state.distance} miles away from the correct location.</p>
-                
+                <div id="resultMap"></div>
+                <div id="result-writing">
+                    <p id='result-key-left'><span className="bold" style={{color: '#50eb02'}}>Green</span> indicates the correct location.</p> 
+                    <p id='result-key-right'><span className="bold" style={{color: '#fc2a00'}}>Red</span> indicates the location of your guess.</p>
+                    <p>Your guess was <span className="bold" style={{color: 'blue'}}>{this.state.distance} miles</span> away from the correct location.</p>
+                </div>
                 {button}
             </div>
         )

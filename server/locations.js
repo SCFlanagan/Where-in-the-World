@@ -8,5 +8,5 @@ api.get('/', (req, res, next) => {
       .then(locations => {
         res.send(locations);
       })
-      .catch(console.error)
+      .catch(next)
   })

@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { Jumbotron, Button } from 'react-bootstrap';
 import { Link } from 'react-router';
-// import { changeCurrentLocations, changeDistance, changeTotal, changeSelectedCategory, changeLatLngGuess } from '../reducers/index';
-// import store from '../store';
-// import SignUp from './SignUp';
 import Instructions from './Instructions';
-
 
 
 export default class HomePage extends Component {
@@ -50,7 +46,7 @@ export default class HomePage extends Component {
         const oldElem = document.getElementById(oldId);
         oldElem.style.border = 'solid 2px white';
       }
-      newElem.style.border = 'solid 2px black';
+      newElem.style.border = 'solid 2px blue';
     }
     this.props.changeSelectedCategory(newCategory);
   }
@@ -84,7 +80,7 @@ export default class HomePage extends Component {
 
   render() {
     return (
-      <div >
+      <div>
         <Jumbotron className="text jumbo">
           <h1>Where in the World</h1>
           <p>How well do you know the world?</p>

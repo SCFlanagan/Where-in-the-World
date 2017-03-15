@@ -4,7 +4,7 @@
 // so any other part of the application could call sequelize.model('User')
 // to get access to the User model.
 
-const User = require('./user')
+const Score = require('./score')
 const Location = require('./location')
 
-module.exports = {User, Location}
+module.exports = {Score, Location}

@@ -108,12 +108,11 @@ Afterwards,
 
   Things To Improve:
 
-    - Add an option to log in or play as a guest. If you login, it will save your high score. There will also be a scoreboard that will feature the highest scores from all users.
-    - Improve the styling
-    - Add a title page with buttons for log in or play as guest. 
-    - After choosing to play as guest or logging in, have a page with better instructions and the categories. Or possibly a modal to read the instructions. Indicate that you can play as random by not choosing a category.
-    - Make it so you can unselect a category to return it back to random.
-    - Make a home page container to connect to the store.
+    - create database for scores and ask for a name if they get a top ten score. 
     - Change the 'Make Guess' button to send an alert if you try to push it without making a guess.
     - Add logo/link back to home page on every page (in navbar?)
-    - unify css for a button class
+    - create a new component that will show the final results and have the scoreboard
+    - fix the small map so it has zoom
+    - fix home page borders so they dont show spaces but can have a border when wanted
+    - everglads street view not working? mt etna sucks
+    - proofread instructions

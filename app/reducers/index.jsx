@@ -8,7 +8,9 @@ const initialState = {
   currentLocations: [],
   latLngGuess: [],
   distance: 0,
-  totalDistance: 0
+  totalDistance: 0,
+  scores: [],
+  newScore: {}
 }
 
 const reducer = (state = initialState, action) => {
@@ -42,6 +44,14 @@ const reducer = (state = initialState, action) => {
 
     case "CHANGE_TOTAL":
       newState.totalDistance = action.total;
+      break;
+
+    case "RECEIVE_SCORES":
+      newState.scores = action.scores;
+      break;
+
+    case "ADD_NEW_SCORE":
+      newState.newScore = action.newScore;
       break;
 
     default: return state;
@@ -101,6 +111,19 @@ export const addToTotal = (added) => {
   }
 }
 
+export const receiveScores = (scores) => {
+  return {
+    type: "RECEIVE_SCORES",
+    scores
+  }
+}
+
+export const addNewScore = (scoreObj) => {
+  return {
+    type: "ADD_NEW_SCORE",
+    scoreObj
+  }
+}
 
 
 export default reducer

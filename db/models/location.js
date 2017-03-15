@@ -8,6 +8,10 @@ const Location = db.define('locations', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  location: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
   lat: {
     type: Sequelize.STRING,
     allowNull: false,

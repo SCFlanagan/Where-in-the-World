@@ -7,6 +7,7 @@ api
   .get('/heartbeat', (req, res) => res.send({ok: true,}))
   
   .use('/locations', require('./locations'))
+  .use('/scores', require('./scores'))
   
   
 

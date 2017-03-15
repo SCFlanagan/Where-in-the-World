@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Results from '../components/Results';
-import { changeCurrentLocations, changeLatLngGuess, changeDistance, addToTotal } from '../reducers/index';
+import { changeCurrentLocations, changeLatLngGuess, changeDistance, addToTotal, addNewScore } from '../reducers/index';
 
 
 export default connect(
@@ -9,7 +9,8 @@ export default connect(
       currentLocations: state.currentLocations,
       latLngGuess: state.latLngGuess,
       distance: state.distance,
-      totalDistance: state.totalDistance
+      totalDistance: state.totalDistance,
+      scores: state.scores
     }
   }, 
   (dispatch) => {
@@ -23,6 +24,9 @@ export default connect(
       changeDistance: function(newDistance) {
         dispatch(changeDistance(newDistance));
       },
+      addNewScore: function(newScoreObj) {
+        dispatch(addNewScore(newScoreObj));
+      }
     }
   }
 )(Results)
