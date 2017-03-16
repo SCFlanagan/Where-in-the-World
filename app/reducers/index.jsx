@@ -10,7 +10,7 @@ const initialState = {
   distance: 0,
   totalDistance: 0,
   scores: [],
-  newScore: {}
+  newScore: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -51,6 +51,10 @@ const reducer = (state = initialState, action) => {
       break;
 
     case "ADD_NEW_SCORE":
+      newState.newScore.push(action.newScore);
+      break;
+
+    case "CLEAR_NEW_SCORE":
       newState.newScore = action.newScore;
       break;
 
@@ -118,10 +122,17 @@ export const receiveScores = (scores) => {
   }
 }
 
-export const addNewScore = (scoreObj) => {
+export const addNewScore = (newScore) => {
   return {
     type: "ADD_NEW_SCORE",
-    scoreObj
+    newScore
+  }
+}
+
+export const clearNewScore = () => {
+  return {
+    type: "CLEAR_NEW_SCORE",
+    newScore: []
   }
 }
 

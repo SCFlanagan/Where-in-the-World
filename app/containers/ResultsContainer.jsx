@@ -10,7 +10,8 @@ export default connect(
       latLngGuess: state.latLngGuess,
       distance: state.distance,
       totalDistance: state.totalDistance,
-      scores: state.scores
+      scores: state.scores,
+      newScore: state.newScore
     }
   }, 
   (dispatch) => {

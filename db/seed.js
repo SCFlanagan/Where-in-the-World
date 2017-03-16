@@ -1,16 +1,8 @@
 const db = require('APP/db')
 
 const seedScores = () => db.Promise.map([
-  {name: 'Susan', score: '110.5'},
-  {name: 'Bubby', score: '90.3'},
-  {name: 'Patrick', score: '120.4'},
-  {name: 'Bubby', score: '90.3'},
-  {name: 'Bubby', score: '90.3'},
-  {name: 'Bubby', score: '90.3'},
-  {name: 'Bubby', score: '90.3'},
-  {name: 'Bubby', score: '90.3'},
-  {name: 'Bubby', score: '90.3'},
-  {name: 'Bubby', score: '100000'},
+  {name: 'Bubby', score: 200},
+  {name: 'Opie', score: 201}
 ], score => db.model('scores').create(score))
 
 const seedLocations = () => db.Promise.map([
@@ -54,8 +46,6 @@ const seedLocations = () => db.Promise.map([
   {name: 'Uluru', location: 'Australia', lat: '-25.3349039', lng: '131.0351441', category: 'Natural Wonders'},
   {name: 'Waters by Base Yelcho', location: 'Antarctica', lat: '-64.6231301', lng: '-62.5566927', category: 'Natural Wonders'},
   {name: 'Geirangerfjord', location: 'Norway', lat: '62.1262049', lng: '7.1672904', category: 'Natural Wonders'},
-  {name: 'Mount Etna', location: 'Italy', lat: '37.7544523', lng: '14.9957855', category: 'Natural Wonders'},
-  {name: 'Everglades National Park', location: 'Florida, USA', lat: '25.6657459', lng: '-81.3646824', category: 'Natural Wonders'},
   {name: 'Zion National Park', location: 'Utah, USA', lat: '37.2841298', lng: '-113.0963908', category: 'Natural Wonders'},
   {name: 'Uyuni Salt Flats', location: 'Bolivia', lat: '-20.1809319', lng: '-67.8708744', category: 'Natural Wonders'},
   {name: 'Ilulissat Icefjord', location: 'Greenland', lat: '69.2079412', lng: '-51.1631219', category: 'Natural Wonders'},
@@ -86,7 +76,6 @@ const seedLocations = () => db.Promise.map([
   {name: 'Ruins of Pompeii', location: 'Pompeii, Italy', lat: '40.749183', lng: '14.484381', category: 'Historical Landmarks'},
   {name: 'Petra', location: 'Ma\'an, Jordan', lat: '30.324', lng: '35.448303', category: 'Historical Landmarks'},
   {name: 'Stonehenge', location: 'Wiltshire, United Kingdom', lat: '51.178895', lng: '-1.826247', category: 'Historical Landmarks'},
-  {name: 'Angkor Wat Temple', location: 'Krong Siem Reap, Cambodia', lat: '13.412460', lng: '-103.868414', category: 'Historical Landmarks'},
   {name: 'Acropolis', location: 'Athens, Greece', lat: '37.971945', lng: '23.7267383', category: 'Historical Landmarks'},
   {name: 'Great Wall of China', location: 'China', lat: '40.4325705', lng: '116.5698324', category: 'Historical Landmarks'},
   {name: 'Mayan city of Tikal', location: 'Tikal, Guatemala', lat: '17.2221192', lng: '-89.6236287', category: 'Historical Landmarks'},

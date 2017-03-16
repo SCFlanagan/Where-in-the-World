@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import { placeMarker } from '../main';
 import { Link } from 'react-router';
+import NewScoreContainer from '../containers/NewScoreContainer';
 
 
 export default class Results extends Component {
@@ -77,12 +78,18 @@ export default class Results extends Component {
             </div>
 
         if (this.props.currentLocations.length === 1) {
-            button =
-                <div>
-                    <Link to={'/final'}>
-                        <Button bsSize="large" bsStyle="info" className="button">Get Your Results</Button>
-                    </Link>
-                </div>
+            let total = this.props.totalDistance.toFixed(1);
+            let lowestScoreObj = this.props.scores[this.props.scores.length-1];
+            if (this.props.scores.length < 10 || total > lowestScoreObj.score) {
+                button = <NewScoreContainer />
+            } else {
+                button =
+                    <div>
+                        <Link to={'/final'}>
+                            <Button bsSize="large" bsStyle="info" className="button">Get Your Results</Button>
+                        </Link>
+                    </div>
+            }
         }
 
         return (
@@ -100,5 +107,6 @@ export default class Results extends Component {
                 {button}
             </div>
         )
+
     }
 }

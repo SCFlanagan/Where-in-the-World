@@ -34,16 +34,12 @@ export default class Game extends Component {
     }
 
     initMap() {
-        // Initialize map
         let map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -34.397, lng: 150.644},
           zoom: 0
         });
 
-        // When a user guesses a location by clicking on the map, the previous guess' marker is removed and the guess' lat and long are changed in the state.
-        // COULD OPTIMIZE THIS TO NOT SAVE AN ARRAY BUT ONLY ONE MARKER
         google.maps.event.addListener(map, 'click', (event) => {
-
             for (var i = 0; i < this.state.markers.length; i++) {
                 this.state.markers[i].setMap(null);
             }
@@ -56,6 +52,8 @@ export default class Game extends Component {
             this.state.distance = distance;
             this.props.changeDistance(distance);
             this.props.changeLatLngGuess([lat, lng]);
+            let elem = document.getElementById('guess-button');
+            elem.style.opacity = 1;
         });
     }
 
@@ -79,7 +77,6 @@ export default class Game extends Component {
 
     placeMarker(map, location) {
       var marker = new google.maps.Marker({
-
           position: location, 
           map: map
       });
@@ -98,7 +95,7 @@ export default class Game extends Component {
                 <div id="street-view"></div>
                 <div id="map"></div>
                 <Link to={'/results'}>
-                  <Button bsSize="large" bsStyle="info" className="button" onClick={this.addDistance.bind(this)}> Make Guess </Button>
+                  <Button bsSize="large" bsStyle="info" className="button" id="guess-button" onClick={this.addDistance.bind(this)}> Make Guess </Button>
                 </Link>
             </div>
         );  

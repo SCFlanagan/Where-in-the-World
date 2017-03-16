@@ -11,7 +11,7 @@ import GameContainer from './containers/GameContainer';
 import ResultsContainer from './containers/ResultsContainer';
 import FinalContainer from './containers/FinalContainer';
 
-import {receiveLocations, changeCurrentLocations, changeDistance, changeTotal, changeSelectedCategory, changeLatLngGuess, receiveScores} from './reducers/index';
+import {receiveLocations, changeCurrentLocations, changeDistance, changeTotal, changeSelectedCategory, changeLatLngGuess, receiveScores, clearNewScore } from './reducers/index';
 
 const resetStore = function(nextState, replace, done) {
   axios.get('/api/locations')
@@ -22,6 +22,7 @@ const resetStore = function(nextState, replace, done) {
       store.dispatch(changeTotal(0));
       store.dispatch(changeSelectedCategory('Random'));
       store.dispatch(changeLatLngGuess([]));
+      store.dispatch(clearNewScore());
     })
     .then(() => {
       axios.get('/api/scores')

@@ -17,7 +17,7 @@ body {
 }
 
 #map {
-    height: 25vh;
+    height: 200px;
     width: 350px;
     margin: 10px auto;
 }
@@ -143,4 +143,29 @@ body {
 
 #final-page h1 {
     text-shadow: 1px 1px gray;
+}
+
+#final-page h4 {
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+}
+
+#guess-button {
+    opacity: 0;
+}
+
+#guess-button:hover {
+    cursor: default;
+}
+
+#continue-button {
+    opacity: 0;
+}
+
+#guess-button:hover {
+    cursor: default;
+}
+
+#submit-name:hover {
+    cursor: default;
 }

@@ -4,9 +4,11 @@ import axios from 'axios';
 
 export default connect(
   (state) => {
+    console.log('new score: ', state.newScore)
     return {
       scores: state.scores,
-      totalDistance: state.totalDistance
+      totalDistance: state.totalDistance,
+      newScore: state.newScore
     }
   }, 
   (dispatch) => {

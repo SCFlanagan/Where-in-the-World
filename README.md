@@ -102,17 +102,3 @@ have a linter someday soon.
 Afterwards,
   - *To deploy:* `npm run deploy-heroku`
   - *To re-seed:* `heroku run npm run seed`
-
-
-
-
-  Things To Improve:
-
-    - create database for scores and ask for a name if they get a top ten score. 
-    - Change the 'Make Guess' button to send an alert if you try to push it without making a guess.
-    - Add logo/link back to home page on every page (in navbar?)
-    - create a new component that will show the final results and have the scoreboard
-    - fix the small map so it has zoom
-    - fix home page borders so they dont show spaces but can have a border when wanted
-    - everglads street view not working? mt etna sucks
-    - proofread instructions

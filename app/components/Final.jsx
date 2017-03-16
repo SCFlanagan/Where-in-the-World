@@ -22,8 +22,7 @@ export default class Final extends Component {
       isHighScore = true;
     }
     if (isHighScore === true) {
-      name = prompt('Congratulations! You have earned one of the highest scores. Please enter your name.');
-      newScoreObj = {name: name, score: roundedDistance};
+      newScoreObj = this.props.newScore[0];
       scoresArr.push(newScoreObj);
       scoresArr = scoresArr.sort(function(a,b) {
         return a.score - b.score;
@@ -36,7 +35,7 @@ export default class Final extends Component {
       props.addScore(newScoreObj);
     }
 
-
+    console.log('scores :', newScoresArr)
     this.state = {
       scores: newScoresArr,
       ranking: 0,
@@ -45,10 +44,11 @@ export default class Final extends Component {
   }
 
   render() {
+    console.log('this.state.scores: ', this.state.scores)
     return (
       <div id='final-page'>
         <h1>Game Over</h1>
-        <p>Your final score was <span className="bold">{this.state.finalScore}</span> miles. See how you compare with our highest scores below.</p>
+        <h4>Your final score was <span className="bold">{this.state.finalScore}</span> miles. See how you compare with our highest scores below.</h4>
 
         <Table striped bordered condensed hover>
           <thead id="scoreboard-head">

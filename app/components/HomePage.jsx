@@ -81,6 +81,7 @@ export default class HomePage extends Component {
   render() {
     return (
       <div>
+        <div className="home-icon"></div>
         <Jumbotron className="text jumbo">
           <h1>Where in the World</h1>
           <p>How well do you know the world?</p>
