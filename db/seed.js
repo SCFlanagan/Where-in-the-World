@@ -1,8 +1,7 @@
 const db = require('APP/db')
 
 const seedScores = () => db.Promise.map([
-  {name: 'Bubby', score: 200},
-  {name: 'Opie', score: 201}
+  {name: 'Susan', score: 956.2}
 ], score => db.model('scores').create(score))
 
 const seedLocations = () => db.Promise.map([
