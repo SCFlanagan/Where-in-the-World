@@ -1,12 +1,12 @@
 const db = require('APP/db')
 
 const seedScores = () => db.Promise.map([
-  {name: 'Susan', score: 956.2}
+  {name: 'Susan', score: 23.2}
 ], score => db.model('scores').create(score))
 
 const seedLocations = () => db.Promise.map([
   {name: 'Eiffel Tower', location: 'Paris, France', lat: '48.856309', lng: '2.297707', category: 'International'},
-  {name: 'Kremlin', location: 'Moscow, Russia', lat: '55.752204', lng: '37.617521', category: 'International'},
+  {name: 'Kremlin', location: 'Moscow, Russia', lat: '55.7513591', lng: '37.6181883', category: 'International'},
   {name: 'Sydney Opera House', location: 'Sydney, Australia', lat: '-33.856579', lng: '151.215275', category: 'International'},
   {name: 'Christ the Redeemer', location: 'Rio de Janeiro, Brazil', lat: '-22.951689', lng: '-43.210498', category: 'International'},
   {name: 'Saint Peter\'s Square', location: 'Vatican City', lat: '41.9024673', lng: '12.4583693', category: 'International'},
@@ -50,6 +50,7 @@ const seedLocations = () => db.Promise.map([
   {name: 'Ilulissat Icefjord', location: 'Greenland', lat: '69.2079412', lng: '-51.1631219', category: 'Natural Wonders'},
   {name: 'Los Glaciares National Park', location: 'Patagonia region of Argentina', lat: '-50.4897493', lng: '-73.0531699', category: 'Natural Wonders'},
   {name: 'Dettifoss Waterfall', location: 'Iceland', lat: '65.8154221', lng: '-16.3838642', category: 'Natural Wonders'},
+  {name: 'Marum Crater, Ambrym Volcano', location: 'Ambrym Island, Vanuatu', lat: '-16.2500152', lng: '168.1359185', category: 'Natural Wonders'},
 
   {name: 'Statue of Liberty', location: 'New York City, New York', lat: '40.689860', lng: '-74.043477', category: 'United States'},
   {name: 'Hollywood Sign', location: 'Los Angeles, California', lat: '34.1311194', lng: '-118.320428', category: 'United States'},

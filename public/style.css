@@ -162,10 +162,14 @@ body {
     opacity: 0;
 }
 
-#guess-button:hover {
+#continue-button:hover {
     cursor: default;
 }
 
 #submit-name:hover {
     cursor: default;
+}
+
+#new-score-header {
+    background-color: lightblue;
 }

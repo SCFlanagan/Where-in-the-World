@@ -44,12 +44,12 @@ const NewScore = React.createClass({
 
                 <Modal show={this.state.showModal} onHide={this.close}>
 
-                    <Modal.Header id="review-form-header">
+                    <Modal.Header id="new-score-header">
                         <Modal.Title>Congratulations!</Modal.Title>
                     </Modal.Header>
 
                     <Modal.Body>
-                        <h4>You have achieved one of the highest scores. Please enter your name: </h4>
+                        <h5>You have achieved one of the highest scores. Please enter your name: </h5>
                             
                         <form onSubmit={(e) => {
                                 e.preventDefault();
