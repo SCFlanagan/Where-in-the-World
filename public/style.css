@@ -188,3 +188,14 @@ body {
 #instructions-header {
     background-color: lightblue;
 }
+
+#alert {
+    height: 12vh;
+    width: 60%;
+    border: 2px solid black;
+    position: relative;
+    z-index: 2;
+    left: 45%;
+    visibility: hidden;
+    background-color: white;
+}

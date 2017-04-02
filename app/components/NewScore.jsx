@@ -1,7 +1,6 @@
 import React from 'react';
 import { FormGroup, ControlLabel, FormControl, Button, Modal, Radio } from 'react-bootstrap';
-import { Link } from 'react-router';
-
+import { Link, browserHistory } from 'react-router';
 
 const NewScore = React.createClass({
 
@@ -22,17 +21,13 @@ const NewScore = React.createClass({
 
     addScoreAndClose(name, score) {
         if (!name) {
-            alert('You must enter a name! It doesn\'t have to be your real one.')
+            alert('Please enter a name, nickname, or initials.')
             return;
         }
         score = score.toFixed(1);
         let scoreObj = {name: name, score: score};
-        console.log('scoreObj being passed in: ', scoreObj)
         this.props.addNewScore(scoreObj);
-        let elem = document.getElementById('continue-button');
-        elem.style.opacity = 1;
-        let elem2 = document.getElementById('submit-name');
-        elem2.style.opacity = 0;
+        browserHistory.push('/final');
     },
 
     render() {
@@ -50,7 +45,7 @@ const NewScore = React.createClass({
 
                     <Modal.Body>
                         <h5>You have achieved one of the highest scores. Please enter your name: </h5>
-                            
+
                         <form onSubmit={(e) => {
                                 e.preventDefault();
                                 this.state.addScoreAndClose(e.target.inputField.value, this.props.totalDistance);
@@ -59,11 +54,7 @@ const NewScore = React.createClass({
                                 <FormControl name="inputField" id="review-text" type="text"/>
                             </FormGroup>
 
-                            <Button id="submit-name" bsSize="large" bsStyle="info" type="submit">Submit</Button>
-                            <br></br>
-                            <Link to={'/final'}>
-                                <Button id="continue-button" bsSize="large" bsStyle="info">Continue</Button>
-                            </Link>
+                            <Button id="submit-name" bsSize="large" bsStyle="info" type="submit">Continue</Button>
                         </form>
 
                     </Modal.Body>
