@@ -10,7 +10,8 @@ const initialState = {
   distance: 0,
   totalDistance: 0,
   scores: [],
-  newScore: []
+  newScore: [],
+  markerAdded: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +57,10 @@ const reducer = (state = initialState, action) => {
 
     case "CLEAR_NEW_SCORE":
       newState.newScore = action.newScore;
+      break;
+    
+    case "ADDED_MARKER":
+      newState.markerAdded = action.bool;
       break;
 
     default: return state;
@@ -136,6 +141,12 @@ export const clearNewScore = () => {
   }
 }
 
+export const addedMarker = (bool) => {
+  return {
+    type: "ADDED_MARKER",
+    bool: bool
+  }
+}
 
 export default reducer
 

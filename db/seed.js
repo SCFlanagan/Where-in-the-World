@@ -33,6 +33,7 @@ const seedLocations = () => db.Promise.map([
   {name: 'Phranang Cave Beach', location: 'Ao Nang, Thailand', lat: '8.0057457', lng: '98.8373378', category: 'International'},
   {name: 'Dongchu Old Monastery', location: 'Kathmandu, Nepal', lat: '27.7149307', lng: '85.2901342', category: 'International'},
   {name: 'Potala Palace', location: 'Lhasa, Tibet Autonomous Region, China', lat: '29.6560051', lng: '91.1173856', category: 'International'},
+  {name: 'Darvaza Gas Crater', location: 'Darvaza, Turkmenistan', lat: '40.2525916', lng: '58.4393746', category: 'International'},
 
   {name: 'Grand Canyon', location: 'Arizona, USA', lat: '36.066508', lng: '-112.145978', category: 'Natural Wonders'},
   {name: 'Niagara Falls', location: 'New York, USA', lat: '43.086554', lng: '-79.068747', category: 'Natural Wonders'},
@@ -50,7 +51,6 @@ const seedLocations = () => db.Promise.map([
   {name: 'Ilulissat Icefjord', location: 'Greenland', lat: '69.2079412', lng: '-51.1631219', category: 'Natural Wonders'},
   {name: 'Los Glaciares National Park', location: 'Patagonia region of Argentina', lat: '-50.4897493', lng: '-73.0531699', category: 'Natural Wonders'},
   {name: 'Dettifoss Waterfall', location: 'Iceland', lat: '65.8154221', lng: '-16.3838642', category: 'Natural Wonders'},
-  {name: 'Marum Crater, Ambrym Volcano', location: 'Ambrym Island, Vanuatu', lat: '-16.2500152', lng: '168.1359185', category: 'Natural Wonders'},
 
   {name: 'Statue of Liberty', location: 'New York City, New York', lat: '40.689860', lng: '-74.043477', category: 'United States'},
   {name: 'Hollywood Sign', location: 'Los Angeles, California', lat: '34.1311194', lng: '-118.320428', category: 'United States'},

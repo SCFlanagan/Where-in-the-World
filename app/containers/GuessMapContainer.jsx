@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
-import Game from '../components/Game';
-import { changeLatLngGuess, changeDistance, addToTotal, addedMarker } from '../reducers/index';
+import GuessMap from '../components/GuessMap';
+import { changeLatLngGuess, changeDistance, addToTotal } from '../reducers/index';
 
 export default connect(
   (state) => {
     return {
-      currentLocations: state.currentLocations,
-      markerAdded: state.markerAdded
+      currentLocations: state.currentLocations
     }
   }, 
   (dispatch) => {
@@ -19,10 +18,7 @@ export default connect(
           },
           addToTotal: function(added) {
             dispatch(addToTotal(added));
-          },
-          addedMarker: function(bool) {
-            dispatch(addedMarker(bool));
           }
       }
   }
-)(Game)
+)(GuessMap)

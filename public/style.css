@@ -6,9 +6,10 @@ body {
 }
 
 #street-view {
-    height: 65vh;
+    height: 92vh;
     width: 100%;
-    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 .gm-iv-address div {
@@ -17,9 +18,12 @@ body {
 }
 
 #map {
-    height: 200px;
-    width: 350px;
-    margin: 10px auto;
+    height: 65vh;
+    width: 80%;
+    position: absolute;
+    bottom: 8vh;
+    left: 10%;
+    z-index: 2;
 }
 
 #game-page {
@@ -151,11 +155,14 @@ body {
 }
 
 #guess-button {
-    opacity: 0;
+    position: relative;
+    bottom: 5.5vh;
+    text-shadow: none;
+    visibility: visible;
 }
 
-#guess-button:hover {
-    cursor: default;
+#guess-map {
+    visibility: hidden;
 }
 
 #continue-button {
@@ -171,5 +178,13 @@ body {
 }
 
 #new-score-header {
+    background-color: lightblue;
+}
+
+#guess-buttons {
+    margin-top: 1vh;
+}
+
+#instructions-header {
     background-color: lightblue;
 }

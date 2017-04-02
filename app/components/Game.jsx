@@ -30,13 +30,13 @@ export default class Game extends Component {
                 position: {lat: this.state.destLat, lng: this.state.destLng},
                 pov: {heading: 160, pitch: 0},
                 zoom: 1
-            });[]
+            });
     }
 
     initMap() {
         let map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 0
+          center: {lat: 21.551565, lng: -9.448729},
+          zoom: 2
         });
 
         google.maps.event.addListener(map, 'click', (event) => {
@@ -52,8 +52,7 @@ export default class Game extends Component {
             this.state.distance = distance;
             this.props.changeDistance(distance);
             this.props.changeLatLngGuess([lat, lng]);
-            let elem = document.getElementById('guess-button');
-            elem.style.opacity = 1;
+            this.props.addedMarker(true);
         });
     }
 
@@ -87,16 +86,39 @@ export default class Game extends Component {
 
     addDistance() {
       this.props.addToTotal(this.state.distance);
+      this.props.addedMarker(false);
+    }
+    
+    hideMap() {
+      const guessMap = document.getElementById('guess-map');
+      guessMap.style.visibility = 'hidden';
+      const guessButton = document.getElementById('guess-button');
+      guessButton.style.visibility = 'initial';
+    }
+
+    showMap() {
+      const guessMap = document.getElementById('guess-map');
+      guessMap.style.visibility = 'visible';  
+      const guessButton = document.getElementById('guess-button');
+      guessButton.style.visibility = 'hidden';
     }
 
    render() {
         return (
             <div id="#game-page">
                 <div id="street-view"></div>
-                <div id="map"></div>
-                <Link to={'/results'}>
-                  <Button bsSize="large" bsStyle="info" className="button" id="guess-button" onClick={this.addDistance.bind(this)}> Make Guess </Button>
-                </Link>
+                <div id="guess-map">
+                  <div id="map"></div>
+                    <div id='guess-buttons'>
+                        <Button bsSize="large" bsStyle="info" className="button" id="hide-map-button" onClick={this.hideMap.bind(this)}>Hide Map</Button>
+                        {this.props.markerAdded &&
+                        <Link to={'/results'}>
+                            <Button bsSize="large" bsStyle="info" className="button" id="make-guess" onClick={this.addDistance.bind(this)}> Make Guess </Button>
+                        </Link> 
+                        }
+                    </div>
+                </div>
+                <Button bsSize="large" bsStyle="info" onClick={this.showMap.bind(this)} id="guess-button">Ready to Guess</Button>
             </div>
         );  
    }

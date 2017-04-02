@@ -69,7 +69,7 @@ export default class Results extends Component {
     render() {
         let button = 
             <div className="results-buttons">
-                <Link to={'/home'}>
+                <Link to={'/'}>
                     <Button bsStyle="info" bsSize="large" className="button">Quit this Game</Button>
                 </Link>
                 <Link to={'/game'}>
@@ -94,10 +94,12 @@ export default class Results extends Component {
 
         return (
             <div className="result-and-key">
+                {this.props.currentLocations.length &&
                 <div id="#result-writing-header">
                     <h1>{this.props.currentLocations[0].name}</h1>
                     <h5>{this.props.currentLocations[0].location}</h5>
                 </div>
+                }
                 <div id="resultMap"></div>
                 <div id="result-writing">
                     <p id='result-key-left'><span className="bold" style={{color: '#50eb02'}}>Green</span> indicates the correct location.</p> 
@@ -107,6 +109,5 @@ export default class Results extends Component {
                 {button}
             </div>
         )
-
     }
 }
