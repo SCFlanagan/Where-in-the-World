@@ -60,7 +60,7 @@ body {
 }
 
 .category-selection-child:hover {
-    background-color: lightblue;
+    background-color: #5bc0de;
     opacity: .5;
     cursor: pointer;
 }
@@ -136,7 +136,7 @@ body {
 }
 
 #scoreboard-head {
-    background-color: lightblue;
+    background-color: #5bc0de;
     color: white;
     text-shadow: 1px 1px gray;
 }
@@ -156,7 +156,7 @@ body {
 
 #guess-button {
     position: relative;
-    bottom: 5.5vh;
+    bottom: 13vh;
     text-shadow: none;
     visibility: visible;
 }
@@ -165,37 +165,31 @@ body {
     visibility: hidden;
 }
 
-#continue-button {
-    opacity: 0;
-}
-
-#continue-button:hover {
-    cursor: default;
-}
-
 #submit-name:hover {
     cursor: default;
 }
 
 #new-score-header {
-    background-color: lightblue;
+    background-color: #5bc0de;
+    color: white;
+    text-shadow: 1px 1px gray;
 }
 
 #guess-buttons {
-    margin-top: 1vh;
+    position: relative;
+    bottom: 7vh;
 }
 
 #instructions-header {
-    background-color: lightblue;
+    background-color: #5bc0de;
+    color: white;
+    text-shadow: 1px 1px gray;
 }
 
-#alert {
-    height: 12vh;
-    width: 60%;
-    border: 2px solid black;
+#map-instructions {
     position: relative;
-    z-index: 2;
-    left: 45%;
-    visibility: hidden;
-    background-color: white;
+    z-index: 5;
+    color: white;
+    bottom: 35vh;
+    text-shadow: 1px 1px gray;
 }

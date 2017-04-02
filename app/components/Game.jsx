@@ -15,6 +15,7 @@ export default class Game extends Component {
             distance: 0,
             markers: []
         }
+        this.hideInstructions = this.hideInstructions.bind(this);
     }
 
     componentDidMount() {
@@ -44,6 +45,7 @@ export default class Game extends Component {
                 this.state.markers[i].setMap(null);
             }
 
+            this.hideInstructions();
             let newMarker = this.placeMarker(map, event.latLng);
             this.state.markers.push(newMarker);
             let lat = event.latLng.lat();
@@ -103,11 +105,17 @@ export default class Game extends Component {
       guessButton.style.visibility = 'hidden';
     }
 
+    hideInstructions() {
+      const elem = document.getElementById('map-instructions');
+      elem.style.visibility = 'hidden';
+    }
+
    render() {
         return (
             <div id="#game-page">
                 <div id="street-view"></div>
                 <div id="guess-map">
+                  <h1 id="map-instructions" onClick={this.hideInstructions}>Click the Location</h1>
                   <div id="map"></div>
                     <div id='guess-buttons'>
                         <Button bsSize="large" bsStyle="info" className="button" id="hide-map-button" onClick={this.hideMap.bind(this)}>Hide Map</Button>
@@ -123,5 +131,7 @@ export default class Game extends Component {
         );  
    }
 }
+
+
 
 
