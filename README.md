@@ -1,4 +1,4 @@
-This application is a game designed to test your knowledge of geographical locations and landmarks throughout the world using street views and maps from the Google Maps API. Built using JavaScript, Node, Express, React, Redux, Sequelize, HTML, and CSS.
+This solo project is a game designed to test your knowledge of geographical locations and landmarks throughout the world using street views and maps from the Google Maps API. Built using JavaScript, Node, Express, React, Redux, Sequelize, HTML, and CSS.
 
 
 How To Play: 
