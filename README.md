@@ -12,3 +12,5 @@ When you think you have an idea of where the location is, you can zoom into the 
 After each round, the game will indicate how many miles your guess was from the actual location. Your total score at the end of the game is your final score to beat. You want to get as low a score as possible.
 
 Enjoy your travels!
+
+http://where-in-world.herokuapp.com/
